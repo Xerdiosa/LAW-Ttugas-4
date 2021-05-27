@@ -12,5 +12,19 @@ def filestorage(request):
             for chunk in original_file.chunks():
                 destination.write(chunk)
         return HttpResponse(f'download at \'/download/?file={original_file.name}\'', status=201)
+    if request.method == 'GET':
+        return HttpResponse(""" 
+<html>
+    <head>
+        <title>Upload</title>
+    </head>
+    <body>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
+    </body>
+</html>
+""")
     else:
-        return HttpResponseNotAllowed(['POST'])
+        return HttpResponseNotAllowed(['POST','GET'])
