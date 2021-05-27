@@ -11,7 +11,7 @@ def filestorage(request):
         with open("../file_repo/" + original_file.name, 'wb+') as destination:
             for chunk in original_file.chunks():
                 destination.write(chunk)
-        return HttpResponse(f'download at \'/download/?file={original_file.name}\'', status=201)
+        return HttpResponse(f'download at <a href="/download/?file={original_file.name}">/download/?file={original_file.name}</a>', status=201)
     if request.method == 'GET':
         return HttpResponse(""" 
 <html>
